@@ -1,28 +1,37 @@
 ﻿{
-  "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.3",
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.5",
   "version": "1.0.0",
-  "id": "00000000-0000-0000-0000-000000000000",
-  "packageName": "com.contoso.helloworld",
+  "id": "4c47d106-93e8-4591-b896-4c41a8e593b8",
+  "packageName": "com.riserrad.azdopipelines",
   "developer": {
-    "name": "Contoso",
-    "websiteUrl": "https://www.microsoft.com",
-    "privacyUrl": "https://www.microsoft.com/privacy",
-    "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+    "name": "Ricardo Serradas",
+    "websiteUrl": "https://www.linkedin.com/in/ricardoserradas/",
+    "privacyUrl": "https://github.com/ricardoserradas/msteams-samples-hello-world-csharp/blob/riserrad/setup/PRIVACYSTATEMENT.md",
+    "termsOfUseUrl": "https://github.com/ricardoserradas/msteams-samples-hello-world-csharp/blob/riserrad/setup/TERMSOFUSE.md"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
   },
   "name": {
-    "short": "Hello World",
-    "full": "Hello World App for Microsoft Teams"
+    "short": "Azure DevOps Pipelines",
+    "full": "Azure DevOps Pipeline management for Teams"
   },
   "description": {
     "short": "Hello World App for Microsoft Teams",
-    "full": "This sample app provides a very simple app for Microsoft Teams. You can extend this to add more content and capabilities."
-  },
-  "icons": {
-    "outline": "contoso20x20.png",
-    "color": "contoso96x96.png"
+    "full": "This app allows you to trigger Azure DevOps pipelines from Microsoft Teams"
   },
   "accentColor": "#60A18E",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://yourteamsapp.ngrok.io/configure",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "team"
+      ]
+    }
+  ],
   "staticTabs": [
     {
       "entityId": "com.contoso.helloworld.hellotab",
@@ -33,46 +42,46 @@
       ]
     }
   ],
-  "configurableTabs": [
-    {
-      "configurationUrl": "https://yourteamsapp.ngrok.io/configure",
-      "canUpdateConfiguration": true,
-      "scopes": [
-        "team"
-      ]
-    }
-  ],
   "bots": [
     {
       "botId": "00000000-0000-0000-0000-000000000000",
-      "needsChannelSelector": false,
-      "isNotificationOnly": false,
       "scopes": [
         "team",
         "personal"
-      ]
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
     }
   ],
   "composeExtensions": [
     {
       "botId": "00000000-0000-0000-0000-000000000000",
+      "canUpdateConfiguration": false,
       "commands": [
         {
           "id": "getRandomText",
-          "description": "Gets some random text and images that you can insert in messages for fun.",
+          "type": "query",
           "title": "Get some random text for fun",
+          "description": "Gets some random text and images that you can insert in messages for fun.",
           "initialRun": true,
+          "fetchTask": false,
           "parameters": [
             {
               "name": "cardTitle",
+              "title": "Card title",
               "description": "Card title to use",
-              "title": "Card title"
+              "inputType": "text"
             }
           ]
         }
       ]
     }
   ],
-  "permissions": [],
-  "validDomains": []
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "yourteamsapp.ngrok.io"
+  ]
 }
